@@ -1,0 +1,17 @@
+<ion-app class='appBackground'>
+  <ion-router-outlet *ngIf='isLoggedIn'></ion-router-outlet>
+  <app-login *ngIf='!isLoggedIn'></app-login> 
+  <!-- *ngIf='isLoggedIn'  *ngIf='!isLoggedIn' -->
+  <!--<amplify-authenticator-ionic *ngIf='isLoggedIn' autocorrect="on" [signUpConfig]="signUpConfig" [ngClass]="{ 'loginModal': !isLoggedIn }"></amplify-authenticator-ionic>--> 
+
+  <!--<div *ngIf='!isLoggedIn' class="languagesDiv">
+    <div class="addButton">
+      <ion-icon class="spanishLanguageIcon" (click)="changeLanguageToSpanish()" src="../../assets/icon/spain-flag-icon.svg">
+      </ion-icon>
+    </div>
+    <div>
+      <ion-icon class="englishLanguageIcon" (click)="changeLanguageToEnglish()" src="../../assets/icon/english-language-icon.svg">
+      </ion-icon>
+    </div>
+  </div>-->
+</ion-app>

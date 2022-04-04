@@ -1,0 +1,315 @@
+<ion-header>
+  <ion-toolbar class='toolbarTopTitle'> 
+    <ion-back-button slot="start" class='tipstAppColor'></ion-back-button>
+    <ion-title class="topLettersTitle">
+      <div class="titleDiv" style="text-align: center;">
+        TipstApp
+      </div>
+    </ion-title>
+    <div *ngIf='isActiveBets' class="addButton">
+      <ion-icon class="shadow-red" (click)="presentModalCreateBet()" name="add-circle">
+      </ion-icon>
+    </div>
+    <div *ngIf='!isActiveBets && !tipsterSelected.hasFilterActivated' class="addButton">
+      <ion-icon *ngIf='totalDeterminedBets.length > 0' class="shadow-red" (click)="filterDeterminedBets()" name="search">
+      </ion-icon>
+      <ion-icon *ngIf='totalDeterminedBets.length === 0' class="shadow-redDisabledFilter" name="search">
+      </ion-icon>
+    </div>
+    <div *ngIf='!isActiveBets && tipsterSelected.hasFilterActivated' class="addButton">
+      <ion-icon class="shadow-redResetFilter" (click)="resetFilter()" name="close-circle">
+      </ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<div class="fixedClass">
+  <ion-card class='panelTipsterDataClass'>
+    <div class="setOfValuesFill"></div>
+    <div class="cardHeader">
+      <div class="cardHeaderValue">
+        <span class="tipsterNameBankSpan">
+        {{tipsterSelected.name}}: {{tipsterSelected.totalBank | number:'1.2-2'}}{{tipsterSelected.currency}} 
+                      <span [ngClass]="{ 'negativeProfit': tipsterSelected.profitUnits < 0,
+                                          'positiveProfit': tipsterSelected.profitUnits > 0 }">{{tipsterSelected.totalDeterminedBenefit | number:'1.2-2'}}{{tipsterSelected.currency}}</span>
+        </span>  
+      </div>
+      <div class="setOfValuesPicksStats">Picks: <span [ngClass]="(totalDeterminedBets.length > 0)?'fontSizeBoldClass':''">&nbsp;{{this.tipsterSelected.picksInPlay}}</span> &nbsp; W: <span [ngClass]="(tipsterSelected.numberOfWonPicks > 0)?'positiveProfit':''">&nbsp;{{tipsterSelected.numberOfWonPicks}}</span> &nbsp; L: <span [ngClass]="(tipsterSelected.numberOfLostPicks > 0)?'negativeProfit':''">&nbsp;{{tipsterSelected.numberOfLostPicks}}</span> &nbsp; N: <span [ngClass]="(tipsterSelected.numberOfNullPicks > 0)?'tipstAppColor':''">&nbsp;{{tipsterSelected.numberOfNullPicks}}</span></div>
+    </div>
+    <div class="setOfValues">
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          Profit: <span [ngClass]="{ 'negativeProfit': tipsterSelected.profitUnits < 0,
+                                   'positiveProfit': tipsterSelected.profitUnits > 0 }">{{tipsterSelected.profitUnits | number:'1.2-2'}} u.</span>
+              <ion-icon name="information-circle" class='infoChartIcon' (click)="infoProfit()"></ion-icon>
+        </div>
+      </div>
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          Yield: <span *ngIf="tipsterSelected.yield  && tipsterSelected.yield !== 0" [ngClass]="{ 'negativeProfit': tipsterSelected.yield < 0,
+                                  'positiveProfit': tipsterSelected.yield > 0 }">{{ tipsterSelected.yield | number:'1.2-2' }}%</span>
+                  <span *ngIf="!tipsterSelected.yield || tipsterSelected.yield == 0" [ngClass]="{ 'negativeProfit': tipsterSelected.yield < 0,
+                                  'positiveProfit': tipsterSelected.yield > 0 }">0.00%</span>
+              <ion-icon name="information-circle" class='infoChartIcon' (click)="infoYield()"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="setOfValues">
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          Money on Picks: {{ tipsterSelected.totalMoneyBet | number:'1.2-2' }}{{tipsterSelected.currency}}
+        </div>
+      </div>
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          To Return: {{tipsterSelected.possibleWinnings | number:'1.2-2'}}{{tipsterSelected.currency}}
+        </div>
+      </div>
+    </div>
+    <div class="setOfValues">
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          Avg Stk: <span *ngIf="!tipsterSelected.averageStake">0.00</span>
+                   <span *ngIf="tipsterSelected.averageStake > 0">{{ tipsterSelected.averageStake | number:'1.2-2'}}</span>
+        </div>
+      </div>
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          Avg Odds: <span *ngIf="!tipsterSelected.averageOdds">0.00</span>
+                    <span *ngIf="tipsterSelected.averageOdds > 0">{{ tipsterSelected.averageOdds | number:'1.2-2'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="setOfValues">
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          Stk 1: {{tipsterSelected.valuePerUnit }}{{tipsterSelected.currency}}
+        </div>
+      </div>
+      <div class="topPanelValueContainer">
+        <div class="innerValue">
+          WR: <span *ngIf="tipsterSelected.winRate  && tipsterSelected.winRate !== 0" [ngClass]="{ 'negativeProfit': tipsterSelected.winRate < 0,
+                        'positiveProfit': tipsterSelected.winRate > 0 }">{{ tipsterSelected.winRate | number:'1.2-2' }}%</span>
+              <span *ngIf="!tipsterSelected.winRate || tipsterSelected.winRate == 0">0.00%</span>
+          <ion-icon name="information-circle" class='infoChartIcon' (click)="infoWinRate()"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="setOfValuesFill"></div>
+  </ion-card>
+  <div class="topButtonsDiv">
+    <div class='activeButtonClass'>
+      <ion-button class="activeBetsButton activeDeterminedFont" (click)="goToActiveBets()" [fill]="isActiveBets? 'solid':'outline'">
+        Active
+        <span *ngIf='totalActiveBets.length >0' class='totalBetsActiveOrDeterminedSpan'> {{totalActiveBets.length}}</span>
+        </ion-button>
+    </div>
+    <div class='determinedButtonClass'>
+      <ion-button class="determinedBetsButton activeDeterminedFont" (click)="goToDeterminedBets()" [fill]="!isActiveBets ? 'solid':'outline'" >
+        Determined
+        <span *ngIf='totalDeterminedBets.length >0' class='totalBetsActiveOrDeterminedSpan'> {{totalDeterminedBets.length}}</span>
+      </ion-button>
+    </div>
+  </div>
+</div>
+<ion-content>
+  <ion-list class='betRowListClass' #betsList [ngClass]="{ 'show': isActiveBets,
+                         'hide': !isActiveBets }" 
+              *ngFor="let bet of totalActiveBets; let i = index" no-lines>
+    <ion-item-sliding class='ionItemSlidingClass'>
+      
+      <ion-item-options side="start" (click)="closeItemOptions()">
+        <ion-item-option class='deleteButton' (click)="presentAlertDeleteBet(bet)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      
+      <ion-item-options side="end" (click)="closeItemOptions()">
+        <ion-item-option class='editButton' (click)="presentModalEditBet(bet)">
+          <ion-icon slot="icon-only" name="brush" class='tipstAppColor'></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item (click)="openFloatBetMenu(i)" class="itemClass">
+          <div class="superContainer">
+            <div class="mediumContainer">
+              <div class="valueLabelContainerDescription" >
+                <ion-label #valueLabelContainerDescription class="descriptionContainer">
+                  <div class='descriptionValue'>{{bet.description}}</div>
+                </ion-label>
+              </div>
+              
+              <div class="valueLabelContainerStake">
+                <ion-label class="valueContainer">
+                  <div class="stakeValue">{{bet.stakeLevel}}</div>
+                </ion-label>
+              </div>
+              
+            </div>
+            <div class="mediumContainer">
+              <div class="sportIconContainer">
+                <ion-icon class="sportIconValue" src="{{bet.srcIcon}}"></ion-icon>
+              </div>
+              <div class="valueLabelContainerSport">
+                <ion-label class="valueContainerSport">
+                  <div class="sportValue">{{bet.sport}}</div>
+                </ion-label>
+              </div>
+              <div class="valueLabelContainerBetValue">
+                <ion-label class="betValueContainer">
+                  <div class="betValue">{{bet.totalBetValue}}{{tipsterSelected.currency}}</div>
+                </ion-label>
+              </div>
+              <div class="valueLabelContainerBenefit">
+                <ion-label class="valueContainer">
+                  <div class='toReturnValue'>
+                    To Return:
+                  </div> 
+                  <div class="possibleBenefitValue">+{{bet.totalBetBenefit | number:'1.2-2'}}{{tipsterSelected.currency}}</div>
+                </ion-label>
+              </div>
+            </div>
+            <div class="mediumContainer">
+              <div class="valueLabelContainerPreLive">
+                <ion-label *ngIf='bet.preLive' class="preLiveContainer">
+                  LIVE
+                </ion-label>
+                <ion-label *ngIf='!bet.preLive' class="preLiveContainer">
+                  PRE
+                </ion-label>
+              </div>
+              <div class="valueLabelContainerBookie">
+                <ion-label class="valueContainerCell">{{bet.bookie}}</ion-label>
+              </div>
+              <div class="valueLabelContainerOdds">
+                <ion-label class="valueContainer">
+                  <div class="quoteValue">{{bet.quote}}</div>
+                </ion-label>
+              </div>
+              <div class="valueLabelContainerDate">
+                <ion-label class="dateContainer">
+                  <div class="dateValue">{{bet.betDate | date: 'dd/MM/yyyy'}}</div>
+                </ion-label>
+              </div>
+            </div>
+          </div>
+          <div class="superContainerOptionButtons" [ngClass]="{ 'optionsMenu': isBetMenu && betRowNumber === i }">
+            <div class="optionsColumnBetList">
+              <div>
+                <ion-button *ngIf="isBetMenu && betRowNumber === i" (click)="lostBet(bet)" color="danger">
+                  <ion-icon name="close-circle"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="isBetMenu && betRowNumber === i" (click)="halfLostBet(bet)" color="danger">
+                  <ion-icon src="../../assets/icon/minus-half-icon-white.svg"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="isBetMenu && betRowNumber === i" (click)="nullBet(bet)" color="warning">
+                  <ion-icon style='height: 15px;' src="../../assets/icon/null-icon-white.svg"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="isBetMenu && betRowNumber === i" (click)="halfWOnBet(bet)" class='winBetButton'>
+                  <ion-icon src="../../assets/icon/half-icon-white.svg"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="isBetMenu && betRowNumber === i" (click)="wonBet(bet)" class='winBetButton'>
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </div>        
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list class='betRowListClass' [ngClass]="{ 'show': !isActiveBets,
+                          'hide': isActiveBets }"
+            *ngFor="let bet of totalDeterminedBets; let i = index"  no-lines>
+    <ion-item-sliding>
+      <ion-item (click)="openFloatDeterminedMenu(i)" class="itemClass">
+        <div class="superContainer">
+          <div class="mediumContainer">
+            <div class="valueLabelContainerDescription" >
+              <ion-label #valueLabelContainerDescription class="descriptionContainer">
+                <div class='descriptionValue'>{{bet.description}}</div>
+              </ion-label>
+            </div>
+            
+            <div class="valueLabelContainerStake">
+              <ion-label class="valueContainer">
+                <div class="stakeValue">{{bet.stakeLevel}}</div>
+              </ion-label>
+            </div>  
+          </div>
+          <div class="mediumContainer">
+            <div class="sportIconContainer">
+              <ion-icon class="sportIconValue" src="{{bet.srcIcon}}"></ion-icon>
+            </div>
+            <div class="valueLabelContainerSport">
+              <ion-label class="valueContainerSport">
+                <div class="sportValue">{{bet.sport}}</div>
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerBetValue">
+              <ion-label class="betValueContainer">
+                <div class="betValue">{{bet.totalBetValue}}{{tipsterSelected.currency}}</div>
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerBenefit">
+              <ion-label class="valueContainer">
+                <div class='toReturnValue'>
+                  Returned:
+                </div> 
+                <div *ngIf="bet.betState === 1" class="possibleBenefitValue">+{{bet.totalBetBenefit | number:'1.2-2'}}{{tipsterSelected.currency}}</div>
+                <div *ngIf="bet.betState === -1" class="possibleBenefitValueNegative">0{{tipsterSelected.currency}}</div>
+                <div *ngIf="bet.betState === -2" class="possibleBenefitValue">+{{bet.totalBetValue/2 | number:'1.2-2'}}{{tipsterSelected.currency}}</div>
+                <div *ngIf="bet.betState === 0" class="possibleBenefitValue">+{{bet.totalBetValue | number:'1.2-2'}}{{tipsterSelected.currency}}</div>
+                <div *ngIf="bet.betState === 2" class="possibleBenefitValue">+{{bet.totalBetValue/2+bet.totalBetValue/2*bet.quote| number:'1.2-2'}}{{tipsterSelected.currency}}</div>
+              </ion-label>
+            </div>
+          </div>
+          <div class="mediumContainer">
+            <div class="valueLabelContainerBetState">
+              <ion-icon class="iconBetStateClass" *ngIf="bet.betState === -2" src="../../assets/icon/minus-half-icon-red.svg"></ion-icon>
+              <ion-icon class="iconBetStateClass" style='font-size: 20px;' *ngIf="bet.betState === -1" name="close-circle" color="danger"></ion-icon>                    
+              <ion-icon class="iconBetStateClass" style='font-size: 18px;' *ngIf="bet.betState === 0" src="../../assets/icon/null-icon-warning.svg"></ion-icon>
+              <ion-icon class="iconBetStateClass" style='font-size: 20px;' *ngIf="bet.betState === 1" name="checkmark-circle" color="success"></ion-icon>
+              <ion-icon class="iconBetStateClass" *ngIf="bet.betState === 2" src="../../assets/icon/half-icon-green.svg"></ion-icon>
+            </div>
+            
+            <div class="valueLabelContainerPreLiveDetermined">
+              <ion-label *ngIf='bet.preLive' class="preLiveContainer">
+                LIVE
+              </ion-label>
+              <ion-label *ngIf='!bet.preLive' class="preLiveContainer">
+                PRE
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerBookieDetermined">
+              <ion-label class="valueContainerCell">{{bet.bookie}}</ion-label>
+            </div>
+            <div class="valueLabelContainerOdds">
+              <ion-label class="valueContainer">
+                <div class="quoteValue">{{bet.quote}}</div>
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerDate">
+              <ion-label class="dateContainer">
+                <div class="dateValue">{{bet.betDate | date: 'dd/MM/yyyy'}}</div>
+              </ion-label>
+            </div>
+          </div>
+        </div>
+        <div class="superContainerOptionButtons" [ngClass]="{ 'optionsMenu': isDeterminedMenu && betRowNumber === i }">
+          <div class="optionsColumnBetList">
+            <div>
+              <!--
+              <ion-button (click)="this.totalDeterminedBets.splice(i, 1);" color="primary">
+                  <ion-icon name="trash">
+                  </ion-icon>      
+              </ion-button>-->
+              
+              <ion-button *ngIf="isDeterminedMenu && betRowNumber === i" (click)="returnBet(bet, i)" color="primary">
+                <ion-icon ios="ios-refresh" md="md-refresh"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-item-sliding>  
+  </ion-list>
+</ion-content>

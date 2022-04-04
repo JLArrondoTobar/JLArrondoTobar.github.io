@@ -1,0 +1,7 @@
+{
+  "name": "TipstApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

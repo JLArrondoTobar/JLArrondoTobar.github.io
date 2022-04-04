@@ -1,0 +1,102 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.ion-color-halflost {
+    --ion-color-base: #FF9100;
+    --ion-color-base-rgb: 255,145,0;
+    --ion-color-contrast: #fff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #e08000;
+    --ion-color-tint: #ff9c1a;
+}
+    
+.ion-color-halfwon {
+    --ion-color-base: #1DE9B6;
+    --ion-color-base-rgb: 29,233,182;
+    --ion-color-contrast: #fff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: v#1acda0;
+    --ion-color-tint: #34ebbd;
+}
+
+.suggestions-container{
+    z-index: 2 !important;
+}
+
+.autocomplete-container{
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12) !important;
+}
+
+.autocomplete-container .input-container input{
+    text-align: center !important;
+}
+
+.alert-wrapper{
+    border-radius: 25px !important;
+}
+
+.list-md{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: transparent;
+}
+
+.deleteButton{
+    --background: transparent;
+    --color: #f04141;
+    background: transparent;
+    color: #f04141;
+}
+
+.editButton{
+    --background: transparent;
+    --color: #3880ff;
+    background: transparent;
+    color: #3880ff;
+}
+
+.item-native{
+    min-height: 74px !important;
+}
+
+.button-outline{
+    --border-width: 0px;
+    --border-style: none;
+    
+}
+
+.amplify-alert-close{
+    color: #F9AA33;
+}
+
+.amplify-alert-icon{
+    color: red !important;
+}
+
+a {
+    color: #F9AA33;
+}

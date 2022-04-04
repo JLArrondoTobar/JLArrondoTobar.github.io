@@ -1,0 +1,113 @@
+<div *ngIf='isSigningIn' class='modalLogin'>
+    <div class='buttonClass'>
+    </div>
+    <div class="titleCreateBet">
+        Sign In
+    </div>
+    <form class='signInForm' [formGroup]="validatorFormSingIn">
+        <div class='userContainer'>
+            <input formControlName="userEmail" class='userInput' type='text' placeholder='Enter email address'>
+        </div>
+        <div class='userContainer'>
+            <input formControlName="userPassword" class='userInput' type='password' placeholder='Enter password'>
+        </div>
+        <div class='buttonOK'>
+            <ion-button  [disabled]='!validatorFormSingIn.valid' (click)='onSubmitSignIn()'>Sign In</ion-button>
+        </div>
+        <div class='loginOptions'>
+            <span class='noAccountSpan'>No account?</span>
+            <a class='createAccount' (click)='createAccount()'> Create an account </a> 
+            <a class='resetPassword'(click)='resetPassword()'>Reset your pasword</a>
+        </div>
+    </form>
+</div>
+<div *ngIf='isSigningUp' class='modalLoginCreateAccount'>
+    <div class='buttonClass'>
+    </div>
+    <div *ngIf='!createAccountCodeSent' class="titleCreateBet">
+        New Account
+    </div>
+    <div *ngIf='createAccountCodeSent' class="titleCreateBet">
+        Confirm Code
+    </div>
+    <form class='signUpForm' [formGroup]="validatorFormSingUp">
+        <div class='userContainer'>
+            <input formControlName="userEmail" class='userInput' type='text' placeholder='Enter email address'>
+        </div>
+        <div *ngIf='!createAccountCodeSent' class='userContainer'>
+            <input formControlName="userPassword" class='userInput' type='password' placeholder='Enter password'>
+        </div>
+        <div *ngIf='createAccountCodeSent' class='userContainer'>
+            <input [(ngModel)]="userCode" [ngModelOptions]="{standalone: true}" class='userInput' type='text' placeholder='Enter code'>
+        </div>
+        <div class='buttonOK'>
+            <ion-button *ngIf='!createAccountCodeSent' [disabled]='!validatorFormSingUp.valid' (click)='onSubmitSignUp()'>Create Account</ion-button>
+            <ion-button *ngIf='createAccountCodeSent' [disabled]='!validatorFormSingUp.valid' (click)='onSubmitConfirmCodeSignUp()'>Confirm Code</ion-button>
+        </div>
+        <div class='loginOptions'>
+            <span class='accountSpan'>Have an account? </span>
+            <a class='signIn' (click)='signIn()'>Sign In </a> 
+            <span *ngIf='!createAccountCodeSent' class='codeSpan'>Have your code? </span>
+            <span *ngIf='createAccountCodeSent' class='codeSpan'>Lost your code? </span>
+            <a *ngIf='!createAccountCodeSent' class='confirm'(click)='confirmCode()'> Confirm</a>
+            <a *ngIf='createAccountCodeSent' class='resendCode'(click)='resendCode()'> Resend</a>
+        </div>
+    </form>
+</div>
+<div *ngIf='isResetingPassword' [ngClass]="{ 'modalLoginResetPassword': !codeWasSent,
+                                             'modalLoginVerifyResetPassword': codeWasSent }">
+    <div class='buttonClass'>
+    </div>
+    <div class="titleCreateBet">
+        Reset your Password
+    </div>
+    <div *ngIf='!codeWasSent' class='codeWillBeSentSpan'>
+        <span>You will receive a verification code to reset your password</span>
+    </div>
+    <form [ngClass]="{ 'resetPasswordForm': !codeWasSent,
+                        'resetPasswordFormCodeSent': codeWasSent }" class='resetPasswordForm' [formGroup]="validatorFormResetPassword">
+        <div class='userContainer'>
+            <input formControlName="userEmail" class='userInput' type='text' placeholder='Enter email address'>
+        </div>
+        <div *ngIf='codeWasSent' class='userContainer'>
+            <input [(ngModel)]="userCodeResetingPassword" [ngModelOptions]="{standalone: true}" class='userInput' type='text' placeholder='Enter code'>
+        </div>
+        <div *ngIf='codeWasSent' class='userContainer'>
+            <input [(ngModel)]="userNewPassword" [ngModelOptions]="{standalone: true}" class='userInput' type='password' placeholder='Enter new password'>
+        </div>
+        <div class='buttonOK'>
+            <ion-button *ngIf='!codeWasSent' [disabled]='!validatorFormResetPassword.valid' (click)='onSubmitResetPassword()'>Submit</ion-button>
+            <ion-button *ngIf='codeWasSent' [disabled]='!validatorFormResetPassword.valid' (click)='onSubmitVerifyResetPassword()'>Verify</ion-button>
+        </div>
+        <div class='loginOptions'>
+            <span class='accountSpan'>Have an account? </span>
+            <a class='signIn' (click)='signIn()'>Sign In </a> 
+            <span class='codeSpan'>Lost your code? </span>
+            <a class='resendCode'(click)='resendCodeResetingPassword()'> Resend</a>
+        </div>
+    </form>
+</div>
+<div *ngIf='isConfirmingCode' class='modalLoginResetPassword'>
+    <div class='buttonClass'>
+    </div>
+    <div class="titleCreateBet">
+        Confirm your sign up code
+    </div>
+    <form class='confirmCodeForm' [formGroup]="validatorFormConfirmCode">
+        <div class='userContainer'>
+            <input formControlName="userEmail" class='userInput' type='text' placeholder='Enter email address'>
+        </div>
+        <div class='userContainer'>
+            <input formControlName="userCode" class='userInput' type='text' placeholder='Enter code'>
+        </div>
+        <div class='buttonOK'>
+            <ion-button [disabled]='!validatorFormConfirmCode.valid' (click)='onSubmitConfirmCode()'>Confirm Code</ion-button>
+        </div>
+        <div class='loginOptions'>
+            <span class='accountSpan'>Have an account? </span>
+            <a class='signIn' (click)='signIn()'>Sign In </a> 
+            <span class='codeSpan'>Lost your code? </span>
+            <a class='resendCode'(click)='resendCodeConfirmingCode()'> Resend</a>
+        </div>
+    </form>
+</div>

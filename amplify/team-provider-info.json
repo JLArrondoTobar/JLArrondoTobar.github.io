@@ -1,0 +1,20 @@
+{
+    "desarrollo": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-tipstapp-desarrollo-203452-authRole",
+            "UnauthRoleArn": "arn:aws:iam::838772937974:role/amplify-tipstapp-desarrollo-203452-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::838772937974:role/amplify-tipstapp-desarrollo-203452-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "amplify-tipstapp-desarrollo-203452-deployment",
+            "UnauthRoleName": "amplify-tipstapp-desarrollo-203452-unauthRole",
+            "StackName": "amplify-tipstapp-desarrollo-203452",
+            "StackId": "arn:aws:cloudformation:eu-west-2:838772937974:stack/amplify-tipstapp-desarrollo-203452/41a72350-46bc-11ea-b8b3-0617023ccf6e",
+            "AmplifyAppId": "d3pmd79dsjn6go"
+        },
+        "categories": {
+            "auth": {
+                "tipstappcb5326a0": {}
+            }
+        }
+    }
+}

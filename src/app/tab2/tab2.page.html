@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar class="toolbarTopTitle">
+    <ion-title class="topLettersTitle">
+      <div class="titleDiv" style="text-align: center;">
+        TipStanalytics
+        </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div class="chartBackProfitMoney">
+      <div class="innerChartBack">
+          <google-chart [data]="pieChartWinRate"></google-chart>
+      </div>
+    </div>
+    <div class="chartBackProfitUnits">
+      <div class="innerChartBack">
+        <google-chart [data]="columnChartProfitUnits"></google-chart>
+      </div>
+    </div>
+    <div class="chartBackCurrency">
+      <div class="innerChartBack">
+        <google-chart [data]="columnChartProfitCurrency"></google-chart>
+      </div>
+    </div>
+    <div class="chartBackCurrency">
+      <div class="innerChartBack">
+        <google-chart [data]="areaChartYield"></google-chart>
+      </div>
+    </div>
+</ion-content>

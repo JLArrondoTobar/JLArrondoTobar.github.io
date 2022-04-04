@@ -1,0 +1,80 @@
+{
+    "login": {
+        "title": "Sing In",
+        "noAccountOption": "No account?",
+        "createAccountOption": "Create an account",
+        "resetPasswordOption": "Reset your password"
+    },
+    "signup": {
+        "title": "New Account",
+        "button": "Create Account",
+        "haveAccountOption": "Have an account?",
+        "haveCodeOption": "Have your code?",
+        "confirmOption": "Confirmar"
+        
+    },
+    "confirmCode": {
+        "title": "Confirm your sign up code",
+        "button": "Confirm Code",
+        "lostCodeOption": "Lost your code?",
+        "resendOption": "Resend"
+    },
+    "resetPassword": {
+        "title": "Reset your Password",
+        "headsUp": "You will receive a verification code to reset your password",
+        "button": "Submit",
+        "lostCodeOption": "Lost your code?",
+        "resendOption": "Resend"
+    },
+    "placeholders": {
+        "emailAddress": "Enter email address",
+        "password": "Enter password",
+        "code": "Enter code",
+        "newPassword": "Enter new password"
+    },
+    "signout": {
+        "title": "Sign Out",
+        "sure": "Are you sure?",
+        "cancel": "Cancel",
+        "okay": "Okay"
+    },
+    "createTipster": {
+        "title": "Create Tipster",
+        "namePlaceholder": "*Enter name",
+        "bankPlaceholder": "*Bank",
+        "valuePerUnitPlaceholder": "*VPU",
+        "currencyPlaceholder": "*Cur.",
+        "bookiePlacerholder": ""
+    },
+    "alerts": {
+        "loggedInSuccesfully": "Logged in successfully. Welcome"
+    }, 
+    "home": {
+        "tipstersTitle": "Welcome to TipstApp",
+        "statsTitle": "TipStanalytics",
+        "stats": "Stats"
+    },
+    "stats": {
+        "winRate":{
+            "title": "Overall Win Rate",
+            "legendWinRate": "WinRate",
+            "legendLossRate": "LossRate",
+            "legendVoid": "Void"
+        },
+        "profitUnits": {
+            "title": "Overall Profit Units:",
+            "legendProfit": "Profit"
+        },
+        "moneyProfit": {
+            "title": "Overall Money Profit:",
+            "legendRevenue": "Revenue",
+            "legendInvested": "Invested",
+            "legendBenfit": "Benefit"
+        },
+        "yield": {
+            "title": "Overall Yield",
+            "legendYield": "Yield"
+        }
+
+    }
+  }

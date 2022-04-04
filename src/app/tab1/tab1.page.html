@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar class="toolbarTopTitle">
+    <div class="signOutButton">
+      <ion-icon class="shadow-red" (click)="presentModalSignOut()" name="log-out" md="md-log-out">
+      </ion-icon>
+    </div>
+    <ion-title class="topLettersTitle">
+      <div class="titleDivTipster">
+        Welcome to TipstApp
+      </div>
+    </ion-title>
+    <div class="addButton">
+      <ion-icon class="shadow-red" (click)="presentModalCreateTipster()" name="add-circle">
+      </ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class='betRowListClass' *ngFor="let tipster of totalTipsters; let i = index" #tipstersList no-lines>
+    <ion-item-sliding (click)="closeItemOptions()" (ionDrag)="logDrag($event)" >
+      
+      <ion-item-options side="start" (click)="closeItemOptions()">
+        <ion-item-option class='deleteButton' (click)="deleteTipster(i)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      
+      <ion-item-options side="end" (click)="closeItemOptions()">
+        <ion-item-option class='editButton' (click)="presentModalEditTipster(tipster)">
+          <ion-icon slot="icon-only" name="brush" class='tipstAppColor'></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item (click)="accessTipster(tipster, i)" class="itemClass">
+        <div class="superContainer">
+          <div class="mediumContainer">
+            <div class="valueLabelContainerName">
+              <ion-label class="cellValue nameValue">{{tipster.name}} </ion-label>
+            </div>
+          </div>
+          <div class="mediumContainer">
+            <div class="valueLabelContainerPicksInPlay">
+              <ion-label class='cellValueTitles'>Picks</ion-label>
+            </div>
+            <div class="valueLabelContainerProfitUnits">
+              <ion-label class='cellValueTitles'>
+                Profit
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerBenefit">
+              <ion-label class='cellValueTitles'>
+                Benefit
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerYield">
+              <ion-label class='cellValueTitles'>
+                Yield
+              </ion-label>
+            </div>
+          </div>
+          <div class="mediumContainer">
+            <div class="valueLabelContainerPicksInPlay">
+              <ion-label class='cellValueValues'>{{tipster.picksInPlay}}</ion-label>
+            </div>
+            <div class="valueLabelContainerProfitUnits">
+              <ion-label class='cellValueValues' [ngClass]="{ 'negativeProfit': tipster.profitUnits < 0,
+                                                        'positiveProfit': tipster.profitUnits > 0 }" >
+                {{tipster.profitUnits| number:'1.2-2'}}u.
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerBenefit">
+              <ion-label class='cellValueValues' [ngClass]="{ 'negativeProfit': tipster.totalDeterminedBenefit < 0,
+                                                        'positiveProfit': tipster.totalDeterminedBenefit > 0 }">
+                {{tipster.totalDeterminedBenefit| number:'1.2-2'}}{{tipster.currency}}
+              </ion-label>
+            </div>
+            <div class="valueLabelContainerYield">
+              <ion-label class='cellValueValues'>
+                  <span *ngIf="tipster.yield  && tipster.yield !== 0" [ngClass]="{ 'negativeProfit': tipster.yield < 0,
+                                  'positiveProfit': tipster.yield > 0 }">{{ tipster.yield | number:'1.2-2' }}%</span>
+                  <span *ngIf="!tipster.yield || tipster.yield == 0">0.00%</span>
+              </ion-label>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

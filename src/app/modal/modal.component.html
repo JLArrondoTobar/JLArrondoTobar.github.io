@@ -1,0 +1,350 @@
+
+<div class='root'>
+  <div *ngIf='chartTypeforView === 1' class='modalBackProfit'>
+    <div class="innerModal">
+        <div class='buttonClass'>
+          <ion-icon class='closeModalIcon' name='close' (click)='closeModalNoReorder()' fill='outline'></ion-icon>
+        </div>
+        <div class='chartClass'>
+          <google-chart [data]='columnChartProfit'></google-chart>
+        </div>
+        <div  class='definitionClassProfit'>
+          Profit describes the financial benefit realized when revenue generated from a business activity exceeds the expenses.
+        </div>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 2' class='modalBackYield'>
+    <div class="innerModal">
+      <div class='buttonClass'>
+        <ion-icon class='closeModalIcon' name='close' (click)='closeModalNoReorder()' fill='outline'></ion-icon>
+      </div>
+      <div class='chartClass'>
+        <google-chart [data]='areaChartYield'></google-chart>
+      </div>
+      <div  class='definitionClassYield'>
+        Yield is a percentage calculation of the betting efficiency, depending on the selected bets and odds for the bet
+      </div>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 3' class='modalBackWinRate'>
+    <div class="innerModal">
+      <div class='buttonClass'>
+        <ion-icon class='closeModalIcon' name='close' (click)='closeModalNoReorder()' fill='outline'></ion-icon>
+      </div>
+      <div class='chartClass'>
+        <google-chart [data]='pieCharWinRate'></google-chart>
+      </div>
+      <div  class='definitionClassWinRate'>
+        Win rate is a percentage metric that measures the number of impressions won over the number of impressions bid.
+      </div>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 4' class='modalBackCreateBet'>
+    <div class="innerModal">
+      <div class='buttonClass'>
+        <ion-icon class='closeModalIcon' name='close' (click)='closeModalNoReorder()' fill='outline'></ion-icon>
+      </div>
+      <div class="titleCreateBet">
+        Create a Bet
+      </div>
+      <form [formGroup]="validatorFormCreateBet" (ngSubmit)="onSubmitCreateBet()">
+        <div class="topContainerCreateBet">
+          <div class='ng-autocompleteSport'>
+            <ng-autocomplete #sportsAutocomplete 
+              [data]='totalSports'
+              [searchKeyword]='keywordSport'
+              placeHolder='Enter Sport'
+              (selected)='selectSport($event)'
+              [itemTemplate]='sportTemplate'
+              (inputChanged)='onChangeSearch($event)'
+              historyIdentifier="totalSports"
+              historyListMaxNumber='3'
+              (inputCleared)='onInputCleared()'>                                 
+            </ng-autocomplete>
+            <ng-template #sportTemplate let-item>
+              <a [innerHTML]='item.sport'></a>
+            </ng-template> 
+          </div>
+        </div>
+        <div class="topContainerCreateBet">
+          <div class='betStakeCotainer'>
+            <input formControlName="betStake" class='betStakeInput' type='number' placeholder='*Stake'>
+          </div>
+          <div class='betOddsCotainer'>
+            <input formControlName="betOdds" class='betOddsInput' type='number' placeholder='*Odds'>
+          </div>
+        </div>
+        <div class='betDescriptionCotainer'>
+          <input formControlName="betDescription" class='betDescriptionInput' type='text' placeholder='*Enter description'>
+        </div>
+        <div class='mediumContainer'>
+          <div class='ng-autocompleteBookies'>
+            <ng-autocomplete formControlName="betBookie" (click)='autocompleteBookieInputClick()' #bookiesAutocomplete 
+                [data]='totalBookies'
+                [searchKeyword]='keywordBookie'
+                placeHolder='Enter Bookie'
+                (selected)='selectBookie($event)'
+                [itemTemplate]='bookieTemplate'
+                (inputChanged)='onChangeSearchBookie($event)'
+                (inputFocused)='onFocusedBookie($event)'
+                (inputCleared)='onInputClearedBookie()'>                                 
+            </ng-autocomplete>
+            <ng-template #bookieTemplate let-item>
+              <a [innerHTML]='item.bookie'></a>
+            </ng-template> 
+          </div>
+        </div>
+        <div class='mediumContainer'>
+          <div class='ng-autocompletePreLive'>
+            <div class='togglePreLive'>
+              <span class="preSpanClass">
+                Pre
+              </span>
+              <ion-toggle style='z-index: 0;' formControlName="betPreLive"></ion-toggle>
+              <span class="liveSpanClass">
+                Live
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class='buttonOKCreateBet'>
+          <ion-button [disabled]='!validatorFormCreateBet.valid' type='submit'>OK</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 5' class='modalBackCreateBet'>
+    <div class="innerModal">
+      <div class='buttonClass'>
+        <ion-icon class='closeModalIcon' name='close' (click)='closeModalNoReorder()' fill='outline'></ion-icon>
+      </div>
+      <div class="titleCreateBet">
+        Edit Bet
+      </div>
+      <form [formGroup]="validatorFormCreateBet">
+        <div class="topContainerCreateBet">
+          <div class='ng-autocompleteSport'>
+            <ng-autocomplete formControlName="betSport" #sportsAutocomplete 
+              [data]='totalSports'
+              [searchKeyword]='keywordSport'
+              placeHolder='Enter Sport'
+              (selected)='selectSport($event)'
+              [itemTemplate]='sportTemplate'
+              (inputChanged)='onChangeSearch($event)'
+              historyListMaxNumber='3'
+              (inputCleared)='onInputCleared()'>                                 
+            </ng-autocomplete>
+            <ng-template #sportTemplate let-item>
+              <a [innerHTML]='item.sport'></a>
+            </ng-template> 
+          </div>
+        </div>
+        <div class="topContainerCreateBet">
+          <div class='betStakeCotainer'>
+            <input formControlName="betStake" class='betStakeInput' type='number' placeholder='Stake'>
+          </div>
+          <div class='betOddsCotainer'>
+            <input formControlName="betOdds" class='betOddsInput' type='number' step=".001" placeholder='Odds'>
+          </div>
+        </div>
+        <div class='betDescriptionCotainer'>
+          <input formControlName="betDescription" maxlength="50" class='betDescriptionInput' type='text' placeholder='Enter description'>
+        </div>
+        <div class='mediumContainer'>
+          <div class='ng-autocompleteBookies'>
+            <ng-autocomplete formControlName="betBookie" (click)='autocompleteBookieInputClick()' #bookiesAutocomplete 
+                [data]='totalBookies'
+                [searchKeyword]='keywordBookie'
+                placeHolder='Enter Bookie'
+                (selected)='selectBookie($event)'
+                [itemTemplate]='bookieTemplate'
+                (inputChanged)='onChangeSearchBookie($event)'
+                (inputFocused)='onFocusedBookie($event)'
+                (inputCleared)='onInputClearedBookie()'>                                 
+            </ng-autocomplete>
+            <ng-template #bookieTemplate let-item>
+              <a [innerHTML]='item.bookie'></a>
+            </ng-template> 
+          </div>
+        </div>
+        <div class='mediumContainer'>
+          <div class='ng-autocompletePreLive'>
+            <div class='togglePreLive'>
+              <span class="preSpanClass">
+                Pre
+              </span>
+              <ion-toggle style='z-index: 0;' formControlName="betPreLive"></ion-toggle>
+              <span class="liveSpanClass">
+                Live
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class='buttonOKCreateBet'>
+          <ion-button [disabled]='!validatorFormCreateBet.valid' (click)='onSubmitEditBet()'>OK</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 6' class='modalBackFilterBets'>
+    <div class='buttonClass'>
+      <ion-icon class='closeModalIcon' name='close' (click)='closeModalNoReorder()' fill='outline' ></ion-icon>
+    </div>
+    <div class="innerModal">
+      <div class="titleFilterDeterminedBets">
+        Filter Determined Bets
+      </div>
+      <div class='filtersContainer'>
+        <ion-item class='dateItemClass'>
+          <span class="dateLabelClass">Start Date</span>
+          <ion-datetime [disabled]="allTimeValue" [(ngModel)]="startDate" class="ionDateTimeStart" max="{{today}}" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+      </div>
+      <div class='filtersContainer'>
+        <ion-item class='dateItemClass'>
+          <span class="dateLabelClass">End Date</span>
+          <ion-datetime [disabled]="allTimeValue" [(ngModel)]="dateEndDate" class="ionDateTime" min="{{startDate}}" max="{{today}}" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+      </div>
+      <div class='filtersContainer'>
+        <div class='allTimeCheckboxContainer'>
+          <ion-checkbox [(ngModel)]='allTimeValue' (ionChange)="allTimeDates(allTimeValue)" class='tableCellValue allTimeCheckbox'></ion-checkbox>
+          <span style='text-align: right;' class='tableCellValue'>All time</span>
+        </div>
+      </div>
+      <div class='betStateFiltersContainer'>
+        <div class='betStateItemClass'>
+          <div class='rowIconsBetState'>
+            <div class='iconBetStateContainer'>
+              <ion-icon class='tableCellValue' style="font-size: 20px"  name="close-circle" color="danger"></ion-icon>                    
+            </div>
+            <div class='iconBetStateContainer halfLostContainer'>
+              <ion-icon class='tableCellValue' src="../../assets/icon/minus-half-icon-red.svg"></ion-icon>
+            </div>
+            <div class='iconBetStateContainer nullContainer'>
+              <ion-icon class='tableCellValue' src="../../assets/icon/null-icon-warning.svg"></ion-icon>
+            </div>
+            <div class='iconBetStateContainer halfWonContainer'>
+              <ion-icon class='tableCellValue' src="../../assets/icon/half-icon-green.svg"></ion-icon>
+            </div>
+            <div class='iconBetStateContainer wonContainer'>
+              <ion-icon class='tableCellValue' style="font-size: 20px"  name="checkmark-circle" color="success"></ion-icon>
+            </div>
+          </div>
+          <div class='rowCheckboxesBetState'>
+            <div class='iconBetStateContainer'>
+              <ion-checkbox [(ngModel)]='lostBetsCheckboxValue' (ionChange)="lostBetsCheckboxChange(lostBetsCheckboxValue)" class='verticalAlignMiddleClass'></ion-checkbox>
+            </div>
+            <div class='iconBetStateContainer halfLostContainer'>
+              <ion-checkbox [(ngModel)]='halfLostBetsCheckboxValue' (ionChange)="halfLostBetsCheckboxChange(halfLostBetsCheckboxValue)" class='verticalAlignMiddleClass'></ion-checkbox>
+            </div>
+            <div class='iconBetStateContainer nullContainer'>
+              <ion-checkbox [(ngModel)]='nullBetsCheckboxValue' (ionChange)="nullBetsCheckboxChange(nullBetsCheckboxValue)" class='verticalAlignMiddleClass'></ion-checkbox>
+            </div>
+            <div class='iconBetStateContainer halfWonContainer'>
+              <ion-checkbox [(ngModel)]='halfWonBetsCheckboxValue' (ionChange)="halfWonBetsCheckboxChange(halfWonBetsCheckboxValue)" class='verticalAlignMiddleClass'></ion-checkbox>
+            </div>
+            <div class='iconBetStateContainer wonContainer'> 
+              <ion-checkbox [(ngModel)]='wonBetsCheckboxValue' (ionChange)="wonBetsCheckboxChange(wonBetsCheckboxValue)" class='verticalAlignMiddleClass'></ion-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='buttonOkFilterList'>
+        <ion-button [disabled]='betsOrderList.length === 0' (click)='reorderDeterminedList()'>OK</ion-button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 7' class='modalBackCreateTipster'>
+    <div class='buttonClass'>
+      <ion-icon class='closeModalIcon' name='close' (click)='closeModalTipsterNoReorder()' fill='outline' ></ion-icon>
+    </div>
+    <div class="innerModal">
+      <div class="titleCreateBet">
+        Create Tipster
+      </div>
+      <form [formGroup]="validatorFormCreateTipster">
+        <div class='tipsterNameCotainer'>
+          <input formControlName="tipsterName" maxlength="15" class='betDescriptionInput' type='text' placeholder='*Enter name'>
+        </div>
+        <div class='mediumTipsterContainer'>
+          <div class='tipsterBankCotainer'>
+            <input formControlName="tipsterBank" class='betStakeInput' type='number' step=".01" placeholder='*Bank'>
+          </div>
+          <div class='tipsterValuePerUnitCotainer'>
+            <input formControlName="tipsterValuePerUnit" class='betOddsInput' type='number' step=".01" placeholder='*VPU'>
+          </div> 
+          <div class='tipsterCurrencyCotainer'>
+            <input formControlName="tipsterCurrency" maxlength="1" class='betStakeInput' type='text' placeholder='*Cur.'>
+          </div> 
+        </div>
+        <div class='mediumTipsterContainer'>
+          <div class='ng-autocompleteBookies'>
+            <ng-autocomplete class='tipsterBookie' formControlName="lastBookiePlayed" (click)='autocompleteBookieInputClick()' #bookiesAutocomplete 
+                [data]='totalBookies'
+                [searchKeyword]='keywordBookie'
+                placeHolder='Preferred Bookie'
+                (selected)='selectBookie($event)'
+                [itemTemplate]='bookieTemplate'
+                (inputChanged)='onChangeSearchBookie($event)'
+                (inputFocused)='onFocusedBookie($event)'
+                (inputCleared)='onInputClearedBookie()'>                                 
+            </ng-autocomplete>
+            <ng-template #bookieTemplate let-item>
+              <a [innerHTML]='item.bookie'></a>
+            </ng-template> 
+          </div>
+        </div>
+        <div class='buttonOKCreateTipster'>
+          <ion-button  [disabled]='!validatorFormCreateTipster.valid' (click)='onSubmitCreateTipser()'>OK</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf='chartTypeforView === 8' class='modalBackCreateTipster'>
+    <div class='buttonClass'>
+      <ion-icon class='closeModalIcon' name='close' (click)='closeModalTipsterNoReorder()' fill='outline' ></ion-icon>
+    </div>
+    <div class="innerModal">
+      <div class="titleCreateBet">
+        Edit Tipster
+      </div>
+      <form [formGroup]="validatorFormEditTipster">
+        <div class='tipsterNameCotainer'>
+          <input formControlName="tipsterName" maxlength="15" class='betDescriptionInput' type='text' placeholder='*Enter name'>
+        </div>
+        <div class='mediumTipsterContainer'>
+          <div class='tipsterBankCotainer'>
+            <input formControlName="tipsterBank" class='betStakeInput' type='number' step=".01" placeholder='*Bank'>
+          </div>
+          <div class='tipsterValuePerUnitCotainer'>
+            <input formControlName="tipsterValuePerUnit" class='betOddsInput' type='number' step=".01" placeholder='*Value per Unit'>
+          </div> 
+          <div class='tipsterCurrencyCotainer'>
+            <input formControlName="tipsterCurrency" maxlength="1" class='betStakeInput' type='text' placeholder='*Currency'>
+          </div> 
+        </div>
+        <div class='mediumTipsterContainer'>
+          <div class='ng-autocompleteBookies'>
+            <ng-autocomplete maxlength="1" [(ngModel)]="tipsterLastBookiePlayed" [ngModelOptions]="{standalone: true}" (click)='autocompleteBookieInputClick()' #bookiesAutocomplete 
+                [data]='totalBookies'
+                [searchKeyword]='keywordBookie'
+                placeHolder='Preferred Bookie'
+                (selected)='selectBookie($event)'
+                [itemTemplate]='bookieTemplate'
+                (inputChanged)='onChangeSearchBookie($event)'
+                (inputFocused)='onFocusedBookie($event)'
+                (inputCleared)='onInputClearedBookie()'>                                 
+            </ng-autocomplete>
+            <ng-template #bookieTemplate let-item>
+              <a [innerHTML]='item.bookie'></a>
+            </ng-template> 
+          </div>
+        </div>
+        <div class='buttonOKCreateTipster'>
+          <ion-button [disabled]='!validatorFormEditTipster.valid' (click)='onSubmitEditTipster()'>OK</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

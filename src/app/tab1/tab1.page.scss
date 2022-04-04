@@ -1,0 +1,136 @@
+.titleDiv{
+    text-align: center;
+    width: 90%;
+    position: absolute;
+    margin-top: 5px;
+    font-family: 'TipstApp';
+}
+
+.addButton{
+    float: right;
+}
+
+.signOutButton{
+    float: left;
+    margin-left: 16.5px;
+}
+
+.titleDivTipster{
+    text-align: center;
+    width: 90%;
+    position: absolute;
+    margin-top: 5px;
+    font-family: 'TipstApp';
+    margin-left: -35.5px;
+}
+
+.shadow-red{
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.59);
+    font-size: 30px;
+    margin-right: 16.5px;
+    background-color: #F9AA33;
+    border-radius: 50%;
+    color: #344955;
+}
+
+.superContainer{
+    width: 100%;
+    height: 100px;
+}
+
+
+.mediumContainer{
+    height: 33px;
+}
+
+.valueLabelContainerName{
+    display: table;
+    width: 100%;
+    height: 33px;
+    text-align: center;
+}
+
+.cellValueTitles{
+    font-size: 13.5px;
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.cellValueValues{
+    font-size: 13.5px;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.nameValue{
+    font-size: 20px;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.valueLabelContainerPicksInPlay{
+    width: 25%;
+    text-align: center;
+    font-size: 14px;
+    height: 33px;
+    display: table;
+    position: absolute;
+}
+
+.negativeProfit{
+    color: red;
+}
+
+.positiveProfit{
+    color: #00b41c;
+}
+
+.betRowListClass{
+    height: 100px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.itemClass{
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    --inner-border-width: 0 0 0px 0 !important;
+    --padding-start: 0px !important;
+    --inner-padding-end: 0px !important;
+}
+
+.valueLabelContainerProfitUnits{
+    width: 25%;
+    text-align: center;
+    font-size: 14px;
+    height: 33px;
+    display: table;
+    margin-left: 25%;
+    position: absolute;
+}
+
+.valueLabelContainerBenefit{
+    width: 25%;
+    text-align: center;
+    font-size: 14px;
+    height: 33px;
+    display: table;
+    margin-left: 50%;
+    position: absolute;
+}
+
+.valueLabelContainerYield{
+    width: 25%;
+    text-align: center;
+    font-size: 14px;
+    height: 33px;
+    display: table;
+    margin-left: 75%;
+    position: absolute;
+}
+
+.autocomplete-container.active {
+    text-align: center;
+    z-index: 999;
+}

@@ -1,0 +1,515 @@
+.root{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.modalBackCreateBet{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 250px;
+    height: 385px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.modalBackFilterBets{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 250px;
+    height: 320px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.modalBackCreateTipster{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 250px;
+    height: 280px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.modalBackWinRate{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    height: 455px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.modalBackYield{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    height: 500px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.modalBackProfit{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    height: 470px;
+    margin: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.buttonOKCreateTipster{
+    text-align: center;
+    margin-top: 12.5px;
+}
+
+.bottomButtonsDiv{
+    position: absolute;
+    bottom: 2.5%;
+}
+
+.modalContent main{
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+}
+
+.sportInput{
+    width: 80%;
+    border: 1px solid;
+    height: 30px;
+}
+
+.itemSearchBar{
+    min-height: 2rem;
+    max-height: 10px;
+}
+
+.chartClass{
+    position: absolute;
+    margin-top: -10px;
+}
+
+.closeModalIcon{
+    font-size: 25px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 7.5px;
+    color: #F9AA33;
+}
+
+.innerModal{
+    width: 100%;
+}
+
+.definitionClassWinRate{
+    position: relative;
+    margin-top: 310px;
+    font-size: 14px;
+    padding: 13px;
+    text-align: justify;
+}
+
+.definitionClassProfit{
+    position: relative;
+    margin-top: 340px;
+    font-size: 14px;
+    padding: 13px;
+    text-align: justify;
+}
+
+.definitionClassYield{
+    position: relative;
+    margin-top: 370px;
+    font-size: 14px;
+    padding: 13px;
+    text-align: justify;
+}
+
+.topContainerCreateBet{
+    margin-top: 10px;
+    overflow: visible;
+    height: 40px;
+    width: 220px;
+    margin-left: 15px;
+}
+
+.ng-autocomplete{
+    width: 275px;
+}
+
+.ng-autocompleteSport{
+    width: 220px;
+}
+
+.ng-autocompleteBookies{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    margin-left: 35px;
+}
+
+.ng-autocompletePreLive{
+    position: absolute;
+    width: 150px;
+    margin-left: 35px;
+    text-align: center;
+    height: 40px;
+}
+
+.togglePreLive{
+    height: 100%;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+.betStakeCotainer{
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    height: 40px;
+    width: 109px;
+    position: absolute;
+}
+
+.tipsterBankCotainer{
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    height: 40px;
+    width: 74px;
+    position: absolute;
+}
+
+.tipsterCurrencyCotainer{
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    margin-left: 157px;
+    width: 63px;
+    position: absolute;
+    margin-top: -40px;
+}
+
+.mediumTipsterContainer{
+    margin-top: 10px;
+    overflow: visible;
+    height: 40px;
+    width: 220px;
+    margin-left: 15px;
+}
+
+.tipsterValuePerUnitCotainer{
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    height: 40px;
+    width: 74px;
+    margin-left: 78px;
+}
+
+.betStakeInput{
+    font-size: 14px;
+    box-sizing: border-box;
+    border: none;
+    outline: 0;
+    background-color: #fff;
+    color:
+    rgba(0,0,0,.87);
+    width: 100%;
+    padding: 0 15px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.betOddsCotainer{
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    height: 40px;
+    width: 109px;
+    margin-left: 111px;
+}
+
+.betOddsInput{
+    font-size: 14px;
+    box-sizing: border-box;
+    border: none;
+    outline: 0;
+    background-color: #fff;
+    color: rgba(0,0,0,.87);
+    width: 100%;
+    padding: 0 15px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.betDescriptionCotainer{
+    margin-top: 10px;
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    height: 40px;
+    width: 220px;
+    margin-left: 15px;
+}
+
+.tipsterNameCotainer{
+    margin-top: 10px;
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.12);
+    overflow: visible;
+    height: 40px;
+    width: 220px;
+    margin-left: 15px;
+}
+
+.betDescriptionInput{
+    font-size: 14px;
+    box-sizing: border-box;
+    border: none;
+    outline: 0;
+    background-color: #fff;
+    color: rgba(0,0,0,.87);
+    width: 100%;
+    padding: 0 15px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.betBookieCotainer{
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    overflow: visible;
+    height: 40px;
+}
+
+.betBookieInput{
+    font-size: 14px;
+    box-sizing: border-box;
+    border: none;
+    outline: 0;
+    background-color: #fff;
+    color: rgba(0,0,0,.87);
+    width: 100%;
+    padding: 0 15px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.preLiveContainer{
+    height: 40px;
+    width: 50%;
+}
+
+.mediumContainer{
+    margin-top: 10px;
+    height: 40px;
+    width: 220px;
+    margin-left: 15px;
+}
+
+.buttonOKCreateBet{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.buttonClass{
+    height: 40px;
+    width: 100%;
+}
+
+.titleCreateBet{
+    text-align: center;
+    width: 100%;
+    height: 25px;
+    font-size: 20px;
+}
+
+.titleFilterDeterminedBets{
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+}
+
+.preSpanClass{
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 7px;
+}
+
+.liveSpanClass{
+    position: absolute;
+    margin-top: 7px;
+    margin-left: -7px;
+}
+
+.reorderListClass{
+    margin-top: 10px;
+}
+
+.ionReorderItemClass{
+    width: 70%;
+    margin-left: 15%;
+}
+
+.buttonOkFilterList{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.iconFilterList{
+    width: 20%;
+}
+
+.titleFilterList{
+    width: 80%;
+    text-align: center;
+    display: table;
+}
+
+.filtersContainer{
+    height: 40px;
+}
+
+.iconBetStateContainer{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    text-align: center;
+    display: table;
+}
+
+.betStateFiltersContainer{
+    height: 60px;
+}
+
+.dateItemClass{
+    --min-height: 40px;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 1%;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+}
+
+.betStateItemClass{
+    height: 60px;
+    --min-height: 40px;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 1%;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+}
+
+.dateLabelClass{
+    height: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 11px;
+    font-size: 14px;
+}
+
+.ionDateTime{
+    height: 40px;
+    font-size: 15px;
+    margin-left: 9px;
+    overflow: visible;
+}
+
+.ionDateTimeStart{
+    height: 40px;
+    font-size: 15px;
+    margin-left: 3px;
+    overflow: visible;
+}
+
+.allTimeCheckboxContainer{
+    height: 40px;
+    display: table;
+    width: 80px;
+    margin-left: 85px;
+}
+
+.tableCellValue{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.halfLostContainer{
+    margin-left: 35px;
+}
+
+.nullContainer{
+    margin-left: 70px;
+}
+
+.halfWonContainer{
+    margin-left: 105px;
+}
+
+.wonContainer{
+    margin-left: 140px;
+}
+
+.rowIconsBetState{
+    width: 100%;
+    height: 30px;
+}
+
+.rowCheckboxesBetState{
+    width: 100%;
+    height: 30px;
+}
+
+.verticalAlignMiddleClass{
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+}
+
+.allTimeCheckbox{
+    width: 16px;
+    height: 16px;
+}
+
+.okButtonModal{
+    background: #F9AA33;
+}
+
+.tipsterBookie{
+    text-align: center;
+}
